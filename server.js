@@ -29,9 +29,9 @@ app.use('/auth', authRoutes);
 app.use('/documents', documentRoutes);
 app.use('/users', userUploadRoutes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve('dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve('dist', 'index.html'));
+// });
 
 const PORT = process.env.PORT || 3000;
 
