@@ -11,6 +11,8 @@ File uploads using Multer
 
 PostgreSQL database integration
 
+Deployed to Render https://document-portal-backend-mnhl.onrender.com/
+
 # 🚀 Tech Stack
 Node.js + Express – API server
 
