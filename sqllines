@@ -1,0 +1,31 @@
+CREATE TABLE profiles (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role VARCHAR(20) CHECK (role IN ('user', 'manager')) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE documents (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(200) NOT NULL,
+  description TEXT,
+  uploaded_by INTEGER REFERENCES profiles(id) ON DELETE SET NULL,
+  original_file_path TEXT, -- path or URL to the original document
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE userdocuments (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES profiles(id) ON DELETE CASCADE,
+  document_id INTEGER REFERENCES documents(id) ON DELETE CASCADE,
+  downloaded_at TIMESTAMP,
+  uploaded_file_path TEXT, -- path or URL to the user's completed version
+  status VARCHAR(50) CHECK (status IN ('pending', 'completed', 'reviewed')) DEFAULT 'pending',
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
