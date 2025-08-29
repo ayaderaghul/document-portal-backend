@@ -11,6 +11,9 @@ CREATE TABLE profiles (
 CREATE TABLE documents (
   id SERIAL PRIMARY KEY,
   title VARCHAR(200) NOT NULL,
+  weight INTEGER DEFAULT 1,
+  obligatoriness BOOLEAN DEFAULT FALSE,
+  reviewed VARCHAR(50) DEFAULT 'pending',
   description TEXT,
   uploaded_by INTEGER REFERENCES profiles(id) ON DELETE SET NULL,
   original_file_path TEXT, -- path or URL to the original document
