@@ -28,7 +28,8 @@ CREATE TABLE userdocuments (
   downloaded_at TIMESTAMP,
   uploaded_file_path TEXT, -- path or URL to the user's completed version
   status VARCHAR(50) CHECK (status IN ('pending', 'completed', 'reviewed')) DEFAULT 'pending',
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (user_id, document_id)
 );
 
 
